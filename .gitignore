@@ -1,0 +1,9 @@
+.idea
+**/*.DS_Store
+
+/.sass-cache/
+/env/
+/venv/
+/site/
+node_modules
+site.zip
