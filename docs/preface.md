@@ -16,21 +16,35 @@ icon: material/pac-man
 - **命令操作**：`sinfo -al`  
 - **配置文件内容**：  
 
-```bash  
-# ~/.bashrc 示例  
-module load CMake/4.1.0  
-export OMP_NUM_THREADS=4
-```
+    ```bash  
+    # ~/.bashrc 示例  
+    module load CMake/4.1.0  
+    export OMP_NUM_THREADS=4
+    ```
 
 - **命令输出或普通文件内容**：
 
-```shell
-PARTITION AVAIL  TIMELIMIT  NODES  STATE NODELIST
-A800*        up 3-00:00:00      5   idle gpu[1-5]
-RTX4090-7    up 3-00:00:00      1   idle gpu6
-RTX4090      up 3-00:00:00      2   idle gpu[7-8]
-L40          up 3-00:00:00      2   idle gpu[9-10]
-```
+    ```shell
+    PARTITION AVAIL  TIMELIMIT  NODES  STATE NODELIST
+    A800*        up 3-00:00:00      5   idle gpu[1-5]
+    RTX4090-7    up 3-00:00:00      1   idle gpu6
+    RTX4090      up 3-00:00:00      2   idle gpu[7-8]
+    L40          up 3-00:00:00      2   idle gpu[9-10]
+    ```
+
+- **完整的代码文件**：
+
+    !!! note "示例代码文件：test.py"
+    
+        ```python
+        import torch
+        print(torch.cuda.is_available())
+        print(torch.cuda.device_count())
+        
+        if torch.cuda.is_available():
+            tensor_gpu = torch.rand(3, 3).cuda()
+            print(tensor_gpu)
+        ```
 
 ## 核心内容
 

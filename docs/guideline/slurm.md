@@ -1,5 +1,5 @@
 ---
-icon: material/checkbox-marked-circle-auto-outline
+icon: material/one-up
 ---
 
 # 作业提交 {#slurm}
