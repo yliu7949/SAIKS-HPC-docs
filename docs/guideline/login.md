@@ -12,7 +12,6 @@ icon: material/information-box
 
 Windows 用户可选择以下任一支持 SSH 协议的客户端软件进行登录：
 
-
 1. **[Xshell](https://www.xshell.com/zh/xshell/)** - 功能丰富的商业 SSH 客户端
 2. **[Termius](https://termius.com/index.html)** - 为生产力和协作构建的现代 SSH 客户端
 3. **[MobaXterm](https://mobaxterm.mobatek.net/)** - 适用于 Windows 的免费 Xserver 和选项卡式 SSH 客户端
@@ -80,6 +79,7 @@ Linux 操作系统的教程可以参考 USTCLUG 编写的 [《Linux 101》在线
 ### 命令行传输工具
 
 (1) scp 命令：
+
 ```shell
 # 上传文件到集群
 scp /本地/文件 用户名@集群 IP:/远程/路径
@@ -89,6 +89,7 @@ scp 用户名@集群 IP:/远程/文件 /本地/路径
 ```
 
 (2) rsync 命令：
+
 ```shell
 # 同步本地目录到集群
 rsync -avz /本地/目录/ 用户名@集群IP:/远程/目录/
@@ -98,6 +99,7 @@ rsync -avz 用户名@集群IP:/远程/目录/ /本地/目录/
 ```
 
 (3) rz/sz 命令：
+
 ```shell
 # 上传文件
 rz

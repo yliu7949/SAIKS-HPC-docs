@@ -16,8 +16,8 @@ icon: material/server
 | GPU 节点（RTX4090） | gpu[6-8]     | 2 * Intel Xeon Gold 6426Y CPU @ 2.5GHz, 540GB, NVIDIA RTX4090 8-GPU 24GB | 3   |
 | GPU 节点（L40）     | gpu[9-10]    | 2 * Intel Xeon Platinum 8360Y CPU @ 2.40GHz, 1TB, L40 8-GPU 45GB         | 2   |
 | 登录节点 / 管理节点     | login/master | 2 * Intel Xeon Gold 6226R CPU @ 2.90GHz, 384GB                           | 1   |
-| 存储节点 1          | data1        | 2 * Intel Xeon Silver 4310，128G，36 * 3.84TB HDD                          | 1   |
-| 存储节点 2          | data2        | 2 * Intel Xeon Silver 4310，128G，34 * 16TB SSD                            | 1   |
+| 存储节点 1          | data1        | 2 \* Intel Xeon Silver 4310，128G, 36 \* 3.84TB HDD                       | 1   |
+| 存储节点 2          | data2        | 2 \* Intel Xeon Silver 4310，128G, 34 \* 16TB SSD                         | 1   |
 
 ### 节点性能
 

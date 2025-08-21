@@ -35,7 +35,7 @@ icon: material/pac-man
 - **完整的代码文件**：
 
     !!! note "示例代码文件：test.py"
-    
+
         ```python
         import torch
         print(torch.cuda.is_available())
