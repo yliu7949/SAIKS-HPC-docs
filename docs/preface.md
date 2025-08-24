@@ -6,31 +6,45 @@ icon: material/pac-man
 
 ## 目标读者
 
-本教程面向计算集群的新用户提供快速入门指导，涵盖从账号申请到作业提交的核心流程。**如果您已有集群使用经验，可以跳过基础章节，直接查阅[程序编译](#)和[作业提交](#)等高级操作部分**。  
+本教程面向计算集群的新用户提供快速入门指导，涵盖从账号申请到作业提交的核心流程。**如果您已有集群使用经验，可以跳过基础章节，直接查阅[代码编译](./guideline/compile.md)和[作业提交](./guideline/slurm.md)等高级操作部分**。  
 
 ## 阅读指南
 
 为便于查阅，本手册采用以下排版规范：
 
 - **环境变量**：`PATH`  
-- **命令操作**：`qstat -u $USER`  
+- **命令操作**：`sinfo -al`  
 - **配置文件内容**：  
 
-```bash  
-# ~/.bashrc 示例  
-module load CMake/4.1.0  
-export OMP_NUM_THREADS=4
-```
+    ```bash  
+    # ~/.bashrc 示例  
+    module load CMake/4.1.0  
+    export OMP_NUM_THREADS=4
+    ```
 
 - **命令输出或普通文件内容**：
 
-```shell
-PARTITION AVAIL  TIMELIMIT  NODES  STATE NODELIST
-A800*        up   infinite      5   idle gpu[1-5]
-RTX4090-7    up   infinite      1   idle gpu6
-RTX4090      up   infinite      2   idle gpu[7-8]
-L40          up   infinite      2   idle gpu[9-10]
-```
+    ```shell
+    PARTITION AVAIL  TIMELIMIT  NODES  STATE NODELIST
+    A800*        up 3-00:00:00      5   idle gpu[1-5]
+    RTX4090-7    up 3-00:00:00      1   idle gpu6
+    RTX4090      up 3-00:00:00      2   idle gpu[7-8]
+    L40          up 3-00:00:00      2   idle gpu[9-10]
+    ```
+
+- **完整的代码文件**：
+
+    !!! note "示例代码文件：test.py"
+
+        ```python
+        import torch
+        print(torch.cuda.is_available())
+        print(torch.cuda.device_count())
+        
+        if torch.cuda.is_available():
+            tensor_gpu = torch.rand(3, 3).cuda()
+            print(tensor_gpu)
+        ```
 
 ## 核心内容
 
@@ -38,7 +52,7 @@ L40          up   infinite      2   idle gpu[9-10]
 
 - **账号申请**：通过在线申请系统开通账户和计算集群账号，查看已使用的机时费
 - **环境配置**：通过 module 命令加载 CUDA、Anaconda3 等基础环境
-- **程序编译**：选用编译器正确编译 C/C++、CUDA 等代码
+- **代码编译**：在用户登录节点使用用编译器正确编译 C/C++、CUDA 等代码
 - **作业提交**：合理申请 CPU/GPU/内存资源，通过 Slurm 系统提交任务
 
 ## 重要守则

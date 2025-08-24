@@ -99,5 +99,6 @@ nav:
     - 设置运行环境: guideline/module.md
     - 代码编译: guideline/compile.md
     - 作业提交: guideline/slurm.md
+    - 常用软件: guideline/software.md
   - 常见问题: faq.md
   - 可视化平台: scow.md
