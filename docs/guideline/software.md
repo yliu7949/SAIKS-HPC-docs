@@ -31,7 +31,7 @@ conda create -n py312 python=3.12 -y
 conda activate py312
 ```
 
-![安装 PyTorch](../images/pytorch.png)
+![安装 PyTorch](http://cdn.gleamoe.com/saids/pytorch.png%40same.webp)
 
 图 1. [PyTorch 官网](https://pytorch.org/get-started/locally/)提供的安装命令
 {: .caption }

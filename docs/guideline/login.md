@@ -48,8 +48,8 @@ Windows 用户可选择以下任一支持 SSH 协议的客户端软件进行登�
 5. 方法栏勾选 "Password" 和 "Keyboard Interactive" 这两项
 6. 点击连接，并在弹出的窗口中输入动态双因素认证（2FA）验证码
 
-![Xshell](../images/xshell-1.png)
-![XShell](../images/xshell-2.png)
+![Xshell](http://cdn.gleamoe.com/saids/xshell-1.png%40same.webp)
+![XShell](http://cdn.gleamoe.com/saids/xshell-2.png%40same.webp)
 
 图 1. Xshell 软件使用示例
 {: .caption }

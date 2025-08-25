@@ -10,7 +10,7 @@ icon: material/home
 
 我们强烈建议您在首次使用计算集群前完整阅读本文档，这将帮助您规避常见错误，显著提升工作效率。如遇任何技术问题，请通过 <a href="https://qm.qq.com/cgi-bin/qm/qr?k=OmRIGaGdDu0rxApIq4JbHIDb4wGI6_Ua&jump_from=webapi&authKey=NChl1eOikqaN8Bpov/V30zSqdxr4mim+cpoeow+V8QG1jwmUa3xrBghyJvChPND/" target="_blank" rel="noopener noreferrer">AI+DS 算力平台 QQ 交流群</a> 联系学生运维团队。
 
-![QQ Group](./images/qqgroup.png)
+![QQ Group](https://cdn.gleamoe.com/saids/qqgroup.png%40same.webp)
 
 图 1. 扫码加入 QQ 交流群
 {: .caption }
