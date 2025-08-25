@@ -73,8 +73,8 @@ Linux 操作系统的教程可以参考 USTCLUG 编写的 [《Linux 101》在线
 推荐工具：
 
 - **[Xftp](https://www.xshell.com/zh/xftp/)** (Windows)
+- **[MobaXterm](https://mobaxterm.mobatek.net/)** (Windows)
 - **[Termius](https://termius.com/index.html)**
-- **[MobaXterm](https://mobaxterm.mobatek.net/)**
 
 ### 命令行传输工具
 

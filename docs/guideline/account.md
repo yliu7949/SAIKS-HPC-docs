@@ -6,30 +6,31 @@ icon: material/account
 
 本集群的用户需要通过[在线申请系统]()完成账户开通。学生作为申请人时与导师需分别完成注册和验证流程。
 
-## 账户开通流程
+## 账户开通流程 {#account-opening-process}
 
-### 用户注册阶段
+### 用户注册阶段 {#user-registration-stage}
 
-**导师注册**（必需先行步骤）：
+#### **导师注册**
+
+导师注册是必需先行步骤。
 
   1. 访问[在线申请系统]()，选择“导师申请”
   ![图片](../images/login/1.png)
-  2. 填写表单信息
+  2. 填写申请信息
   ![图片](../images/login/2.png)
   3. 提交表单信息，等待系统管理员审核（≤1 个工作日）
   ![图片](../images/login/3.png)
-  4. 账户申请成功
+  4. 账户申请成功（邮件通知）
   ![图片](../images/login/4.png)
   5. 导师登录系统审批学生申请流程：
     - 收到学生待审批邮件
   ![图片](../images/login/7.png)
-    - 用已注册用户名及密码登录系统
+    - 使用已注册的用户名及密码登录系统
   ![图片](../images/login/5.png)
     - 审批学生申请
   ![图片](../images/login/6.png)
 
-
-**学生注册**：
+#### **学生注册**
 
   1. 访问[在线申请系统]()，选择“学生申请”
   ![图片](../images/login/8.png)
@@ -40,8 +41,10 @@ icon: material/account
   4. 等待系统管理员审核（≤1 个工作日），审核通过后账户申请成功
   ![图片](../images/login/11.png)
 
-### 账户申请流程
-1. 导师申请流程
+### 账户申请流程 {#account-application-process}
+
+导师申请流程
+
 ```mermaid
 sequenceDiagram
     participant T as 导师
@@ -58,11 +61,11 @@ sequenceDiagram
     Admin->>Sys: 登录系统, 批准申请
     
     Sys->>M: 生成账户凭据邮件
-    M->>T: 发送账户开通邮件 (含凭据和2FA)
+    M->>T: 发送账户开通邮件 (含凭据和 2FA)
     note left of T: 导师账户申请成功
 ```
 
-2. 学生申请流程
+学生申请流程
 
 ```mermaid
 sequenceDiagram
@@ -92,7 +95,7 @@ sequenceDiagram
         Admin->>Sys: 登录系统, 最终批准申请
 
         Sys->>M: 生成账户凭据邮件
-        M->>S: 发送账户开通邮件 (含凭据和2FA)
+        M->>S: 发送账户开通邮件 (含凭据和 2FA)
         note right of S: 学生账户申请成功
     else 导师拒绝
         Sys->>M: 向学生发送申请被拒通知
@@ -100,7 +103,7 @@ sequenceDiagram
     end
 ```
 
-### 账户信息交付
+### 账户信息交付 {#account-information-delivery}
 
 审批通过后将通过邮件发送包含：
 
@@ -109,4 +112,3 @@ sequenceDiagram
     - 用户名
     - 随机初始密码
     - 2FA 密钥
-
