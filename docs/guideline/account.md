@@ -4,7 +4,7 @@ icon: material/account
 
 # 账号申请 {#account}
 
-本集群的用户需要通过[在线申请系统]()完成账户开通。学生作为申请人时与导师需分别完成注册和验证流程。
+本集群的用户需要通过 <a href="http://user.saids.hpc.gleamoe.com/" target="_blank" rel="noopener noreferrer">在线申请系统</a> 完成账户开通。学生作为申请人时与导师需分别完成注册和验证流程。
 
 ## 账户开通流程 {#account-opening-process}
 
@@ -14,7 +14,7 @@ icon: material/account
 
 导师注册是必需先行步骤。
 
-  1. 访问[在线申请系统]()，选择“导师申请”
+  1. 访问 <a href="http://user.saids.hpc.gleamoe.com/" target="_blank" rel="noopener noreferrer">在线申请系统</a>，选择“导师申请”
   ![图片](http://cdn.gleamoe.com/saids/login/1.png%40same.webp)
   2. 填写申请信息
   ![图片](http://cdn.gleamoe.com/saids/login/2.png%40same.webp)
@@ -32,7 +32,7 @@ icon: material/account
 
 #### **学生注册**
 
-  1. 访问[在线申请系统]()，选择“学生申请”
+  1. 访问 <a href="http://user.saids.hpc.gleamoe.com/" target="_blank" rel="noopener noreferrer">在线申请系统</a>，选择“学生申请”
   ![图片](http://cdn.gleamoe.com/saids/login/8.png%40same.webp)
   2. 填写表单信息，提交后等待导师审批
   ![图片](http://cdn.gleamoe.com/saids/login/9.png%40same.webp)
