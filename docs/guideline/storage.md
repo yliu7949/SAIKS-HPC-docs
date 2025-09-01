@@ -28,19 +28,21 @@ data2:/backup   232T  1.0M  221T   1% /backup
 | 挂载点       | 总容量     | 用户配额    | 用途          | 备注         |
 |-----------|---------|---------|-------------|------------|
 | `/opt`    | 1006 GB | 无       | 集群预装软件      | 普通用户只读     |
-| `/home`   | 60 TB   | 120 GB  | 用户家目录       | 用户家目录下可读写  |
-| `/data1`  | 59 TB   | 120 GB  | 供软件运行时使用    | 用户名文件夹下可读写 |
-| `/data2`  | 232 TB  | 1024 GB | 大文件存储       | 用户名文件夹下可读写 |
-| `/backup` | 232 TB  | 512 GB  | 归档结果和重要数据备份 | 用户名文件夹下可读写 |
+| `/home`   | 60 TB   | 110 GB  | 用户家目录       | 用户家目录下可读写  |
+| `/data1`  | 59 TB   | 110 GB  | 供软件运行时使用    | 用户名文件夹下可读写 |
+| `/data2`  | 232 TB  | 1000 GB | 大文件存储       | 用户名文件夹下可读写 |
+| `/backup` | 232 TB  | 500 GB  | 归档结果和重要数据备份 | 用户名文件夹下可读写 |
 
 使用 `/data1`、`/data2` 或 `/backup` 时，请进入对应用户组名下以你的用户名命名的子目录。例如，通过 `cd /data2/$(groups)/$(whoami)` 命令进入你在 `/data2` 中的个人目录。
 
 使用 `quota -s` 命令可以查看共享目录配额和已使用的存储空间信息，例如：
 
 ```bash
-Disk quotas for user user (uid 1000): 
+Disk quotas for user yliu7949 (uid 10076):
      Filesystem   space   quota   limit   grace   files   quota   limit   grace
-   data2:/data2    139G   1000G   1024G             655       0       0        
+   data1:/data1      4K    110G    120G               1       0       0
+    data1:/home     32K    110G    120G               8       0       0
+   data2:/data2      4K   1000G   1024G               1       0       0
   data2:/backup      4K    500G    512G               1       0       0
 ```
 

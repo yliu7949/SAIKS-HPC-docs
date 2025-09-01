@@ -4,7 +4,7 @@ icon: material/server
 
 # 计算集群概况 {#cluster-overview}
 
-集群试运行日期：2025 年 08 月 24 日；正式上线日期：预计 2025 年 09 月。
+集群试运行日阶段：2025 年 8 月 25 日至 2025 年 9 月 30 日；集群正式运行阶段：预计 2025 年 10 月 1 日开始。
 
 ## 硬件环境 {#hardware}
 
@@ -56,3 +56,7 @@ icon: material/server
 ## QOS 设置 {#QOS}
 
 暂未设置 QOS。
+
+## 计费标准 {#billing-standards}
+
+暂未发布计费标准。
