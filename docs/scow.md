@@ -12,20 +12,20 @@ icon: material/television-guide
 
 ## 用户登录
 
-进入SCOW平台登录页面，使用SSH用户名和密码登录。
+进入 SCOW 平台登录页面，使用 SSH 用户名和密码登录。
 ![login](./images/scow/login.png)
 
 ## 使用 shell
-SCOW提供基于Web的Shell终端功能，无需安装SSH客户端即可直接访问登录节点。
+SCOW 提供基于 Web 的 Shell 终端功能，无需安装 SSH 客户端即可直接访问登录节点。
 
 - 在主页点击"Shell"选项进入终端界面。
 ![shell](./images/scow/shell1.png)
 
-- Shell页面，终端支持常见的Linux命令操作。
+- Shell 页面，终端支持常见的 Linux 命令操作。
 ![shell](./images/scow/shell2.png)
 
 ## 使用桌面功能
-SCOW集成了远程桌面功能，支持图形化界面的交互式任务。
+SCOW 集成了远程桌面功能，支持图形化界面的交互式任务。
 
 - 在主页点击"桌面"进入远程桌面管理界面。
 ![desktop](./images/scow/desktop1.png)
@@ -37,7 +37,7 @@ SCOW集成了远程桌面功能，支持图形化界面的交互式任务。
 ![desktop](./images/scow/desktop3.png)
 
 ## 作业管理
-SCOW提供作业管理功能。
+SCOW 提供作业管理功能。
 
 - 在主页点击作业，进入作业管理界面。
 ![job](./images/scow/job1.png)
@@ -49,7 +49,7 @@ SCOW提供作业管理功能。
 ![job](./images/scow/job3.png)
 
 ## 账户管理
-SCOW提供账户管理页面，可查看账户可用额度和作业账单。
+SCOW 提供账户管理页面，可查看账户可用额度和作业账单。
 
 - 通过页面右上角切换按钮在超算平台和管理系统之间切换。
 ![account](./images/scow/account1.png)
