@@ -7,7 +7,8 @@
     "allowed_elements": [
       "br", // Useful in tables
       "figure", "figcaption",
-      "s", "del" // Python-Markdown parsing issue with CJK
+      "s", "del", // Python-Markdown parsing issue with CJK
+      "a"
     ]
   },
   "MD046": false, // Use fenced code block style, too many false positives

@@ -12,31 +12,26 @@ icon: material/apps-box
   列出所有可用的模块。运行结果如下所示：
 
     ```shell
-    ---------------------------------------------------------------- /opt/Modules/app -----------------------------------------------------------------
-    Anaconda3/2025.06  CMake/4.1.0  
+    --------------------------------------------------------------------- /opt/Modules/app ----------------------------------------------------------------------
+    Anaconda3/2025.06  CMake/4.1.0  code-server/4.104.1
     
-    -------------------------------------------------------------- /opt/Modules/compiler --------------------------------------------------------------
-    cuda/12.9.1  cuda/13.0  
+    ------------------------------------------------------------------- /opt/Modules/compiler -------------------------------------------------------------------
+    cuda/12.9.1  cuda/13.0
     
-    --------------------------------------------------------------- /opt/Modules/intel ----------------------------------------------------------------
-    advisor/2025.2                compiler-rt/latest  dev-utilities/2025.2.0  dpl/latest                  mkl/2025.2   umf/latest    
-    advisor/latest                compiler/2025.2.0   dev-utilities/latest    intel_ipp_intel64/2022.2    mkl/latest   vtune/2025.4  
-    ccl/2021.16.0                 compiler/latest     dnnl/3.8.1              intel_ipp_intel64/latest    mpi/2021.16  vtune/latest  
-    ccl/latest                    dal/2025.6          dnnl/latest             intel_ippcp_intel64/2025.2  mpi/latest   
-    compiler-intel-llvm/2025.2.0  dal/latest          dpct/2025.2.0           intel_ippcp_intel64/latest  tbb/2022.2   
-    compiler-intel-llvm/latest    debugger/2025.2.0   dpct/latest             ishmem/1.3.0                tbb/latest   
-    compiler-rt/2025.2.0          debugger/latest     dpl/2022.9              ishmem/latest               umf/0.11.0   
+    -------------------------------------------------------------------- /opt/Modules/intel ---------------------------------------------------------------------
+    advisor/2025.2                compiler-rt/2025.2.0  debugger/2025.2.0       dpct/2025.2.0             intel_ippcp_intel64/2025.2  mpi/2021.16  vtune/2025.4  
+    advisor/latest                compiler-rt/latest    debugger/latest         dpct/latest               intel_ippcp_intel64/latest  mpi/latest   vtune/latest  
+    ccl/2021.16.0                 compiler/2025.2.0     dev-utilities/2025.2.0  dpl/2022.9                ishmem/1.3.0                tbb/2022.2   
+    ccl/latest                    compiler/latest       dev-utilities/latest    dpl/latest                ishmem/latest               tbb/latest   
+    compiler-intel-llvm/2025.2.0  dal/2025.6            dnnl/3.8.1              intel_ipp_intel64/2022.2  mkl/2025.2                  umf/0.11.0   
+    compiler-intel-llvm/latest    dal/latest            dnnl/latest             intel_ipp_intel64/latest  mkl/latest                  umf/latest
     
     Key:
     modulepath
     ```
 
-  - `module load <name>`  
-    加载指定模块，例如：
-
-    ```bash
-    module load Anaconda3/2025.06
-    ```
+- `module load <name>`  
+    加载指定模块，例如：`module load Anaconda3/2025.06`。
 
 - `module unload <name>`  
   卸载指定模块。

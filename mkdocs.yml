@@ -92,7 +92,8 @@ plugins:
 nav:
   - 首页: index.md
   - 前言: preface.md
-  - 计算集群概况: cluster.md
+  - 集群概况: cluster.md
+  - 集群监控: grafana.md
   - 快速开始:
     - 账号申请: guideline/account.md
     - 集群登录与文件传输: guideline/login.md
@@ -101,6 +102,7 @@ nav:
     - 作业管理: guideline/slurm.md
     - 集群存储: guideline/storage.md
     - 常用软件: guideline/software.md
+  - SCOW 计算门户: scow.md
   - 常见问题: faq.md
   - 深入学习: learn.md
-  - 可视化平台: scow.md
+
