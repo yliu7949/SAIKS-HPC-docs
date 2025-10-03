@@ -15,31 +15,31 @@ icon: material/account
 导师注册是必需先行步骤。
 
   1. 访问 <a href="http://user.saids.hpc.gleamoe.com/" target="_blank" rel="noopener noreferrer">在线申请系统</a>，选择“导师申请”
-  ![图片](http://cdn.gleamoe.com/saids/login/1.png%40same.webp)
+  ![图片](https://cdn.gleamoe.com/saids/login/1.png%40same.webp)
   2. 填写申请信息
-  ![图片](http://cdn.gleamoe.com/saids/login/2.png%40same.webp)
+  ![图片](https://cdn.gleamoe.com/saids/login/2.png%40same.webp)
   3. 提交表单信息，等待系统管理员审核（≤1 个工作日）
-  ![图片](http://cdn.gleamoe.com/saids/login/3.png%40same.webp)
+  ![图片](https://cdn.gleamoe.com/saids/login/3.png%40same.webp)
   4. 账户申请成功（邮件通知）
-  ![图片](http://cdn.gleamoe.com/saids/login/4.png%40same.webp)
+  ![图片](https://cdn.gleamoe.com/saids/login/4.png%40same.webp)
   5. 导师登录系统审批学生申请流程：
     - 收到学生待审批邮件
-  ![图片](http://cdn.gleamoe.com/saids/login/7.png%40same.webp)
+  ![图片](https://cdn.gleamoe.com/saids/login/7.png%40same.webp)
     - 使用已注册的用户名及密码登录系统
-  ![图片](http://cdn.gleamoe.com/saids/login/5.png%40same.webp)
+  ![图片](https://cdn.gleamoe.com/saids/login/5.png%40same.webp)
     - 审批学生申请
-  ![图片](http://cdn.gleamoe.com/saids/login/6.png%40same.webp)
+  ![图片](https://cdn.gleamoe.com/saids/login/6.png%40same.webp)
 
 #### **学生注册**
 
   1. 访问 <a href="http://user.saids.hpc.gleamoe.com/" target="_blank" rel="noopener noreferrer">在线申请系统</a>，选择“学生申请”
-  ![图片](http://cdn.gleamoe.com/saids/login/8.png%40same.webp)
+  ![图片](https://cdn.gleamoe.com/saids/login/8.png%40same.webp)
   2. 填写表单信息，提交后等待导师审批
-  ![图片](http://cdn.gleamoe.com/saids/login/9.png%40same.webp)
+  ![图片](https://cdn.gleamoe.com/saids/login/9.png%40same.webp)
   3. 收到导师审批通过邮件
-  ![图片](http://cdn.gleamoe.com/saids/login/10.png%40same.webp)
+  ![图片](https://cdn.gleamoe.com/saids/login/10.png%40same.webp)
   4. 等待系统管理员审核（≤1 个工作日），审核通过后账户申请成功
-  ![图片](http://cdn.gleamoe.com/saids/login/11.png%40same.webp)
+  ![图片](https://cdn.gleamoe.com/saids/login/11.png%40same.webp)
 
 ### 账户申请流程 {#account-application-process}
 

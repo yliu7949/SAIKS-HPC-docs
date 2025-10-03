@@ -12,7 +12,7 @@ icon: material/television-guide
 
 !!! info "访问 SCOW 门户：<a href="http://scow.saids.hpc.gleamoe.com/" target="_blank" rel="noopener noreferrer">http://scow.saids.hpc.gleamoe.com/</a>"
 
-![login](./images/scow/login.png)
+![login](https://cdn.gleamoe.com/saids/scow/login.png)
 
 使用登录集群的用户名和密码登录 SCOW 门户。
 
@@ -24,11 +24,11 @@ SCOW 提供基于 Web 的 Shell 终端功能，无需安装 SSH 客户端即可�
 
 - 在主页点击"Shell"按钮进入终端页面。
 
-    ![shell](./images/scow/shell1.png)
+    ![shell](https://cdn.gleamoe.com/saids/scow/shell1.png)
 
 - 打开 Shell 页面后，即可输入 Linux 命令并按回车执行命令。
 
-    ![shell](./images/scow/shell2.png)
+    ![shell](https://cdn.gleamoe.com/saids/scow/shell2.png)
 
 ## 远程桌面
 
@@ -36,15 +36,15 @@ SCOW 集成了远程桌面功能，使用步骤如下：
 
 - 在主页点击"桌面"按钮。
 
-    ![desktop](./images/scow/desktop1.png)
+    ![desktop](https://cdn.gleamoe.com/saids/scow/desktop1.png)
 
 - 若已存在桌面，点击右侧“操作”中的启动按钮启动桌面；若不存在桌面，点击“新建桌面”按钮，创建一个新的桌面。
 
-    ![desktop](./images/scow/desktop2.png)
+    ![desktop](https://cdn.gleamoe.com/saids/scow/desktop2.png)
 
 - 在自动打开的标签页中使用远程桌面。
 
-    ![desktop](./images/scow/desktop3.png)
+    ![desktop](https://cdn.gleamoe.com/saids/scow/desktop3.png)
 
 ## 作业管理
 
@@ -52,15 +52,15 @@ SCOW 提供了作业提交和作业详情查看功能，使用步骤如下：
 
 - 在主页点击“作业”按钮，进入作业管理界面。
 
-    ![job](./images/scow/job1.png)
+    ![job](https://cdn.gleamoe.com/saids/scow/job1.png)
 
 - **提交作业：**通过图形化界面填写详细作业参数后提交作业。
 
-    ![job](./images/scow/job2.png)
+    ![job](https://cdn.gleamoe.com/saids/scow/job2.png)
 
 - **查看作业详情：**点击“未结束的作业”和“所有作业”选项卡可以筛选并查看作业详情，包括作业名、运行时间和作业状态等内容。
 
-    ![job](./images/scow/job3.png)
+    ![job](https://cdn.gleamoe.com/saids/scow/job3.png)
 
 ## 账户管理
 
@@ -68,24 +68,24 @@ SCOW 提供账户管理功能，教师用户作为账户管理员，可在管理
 
 - 通过页面右上方的切换按钮可以在“超算平台”和“管理系统”之间互相切换。
 
-    ![account](./images/scow/account1.png)
+    ![account](https://cdn.gleamoe.com/saids/scow/account1.png)
 
 - 切换至“管理系统”后，可以实时查看账户可用额度和资源使用情况。
 
-    ![account](./images/scow/account2.png)
+    ![account](https://cdn.gleamoe.com/saids/scow/account2.png)
 
 - **作业计费：**在“用户空间”可以查看当前账户下所有用户的作业详情。
 
-    ![account](./images/scow/account3.png)
+    ![account](https://cdn.gleamoe.com/saids/scow/account3.png)
 
 - **操作日志：**查看账户下所有用户的登录登出情况、作业运行及应用使用等审计级别的日志。
 
-    ![account](./images/scow/account4.png)
+    ![account](https://cdn.gleamoe.com/saids/scow/account4.png)
 
 - **用户管理：**查看账户下的所有用户，并执行封锁、限额、移除等操作。
 
-    ![account](./images/scow/account5.png)
+    ![account](https://cdn.gleamoe.com/saids/scow/account5.png)
 
 - **消费记录：**查看当前账户的充值记录、账单明细等。
 
-    ![account](./images/scow/account6.png)
+    ![account](https://cdn.gleamoe.com/saids/scow/account6.png)
