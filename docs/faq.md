@@ -31,3 +31,9 @@ A3.2：在登录节点登录自己的网络通账号后，计算节点同登录�
 Q4.1：可否安装 CUDA 12.8？
 
 A4.1：用户可通过 conda 在个人环境中安装特定版本的 CUDA Toolkit。请参考 <a href="https://201.ustclug.org/advanced/cuda/#cuda-conda" target="_blank" rel="noopener noreferrer">使用 Conda 安装 CUDA</a>。
+
+## 存储 {#storage}
+
+Q5.1：登录集群时报错 "Disk quota exceeded"，导致无法登录，应如何解决？
+
+A5.1：该错误表明家目录使用量已超过磁盘配额限制。通过 SCOW 平台的“文件管理”功能手动删除家目录中不必要的文件以释放空间。空间释放后，即可重新尝试登录。
