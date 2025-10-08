@@ -15,6 +15,8 @@ A1.1：在 Slurm 作业调度系统中，调度器会为高优先级作业预留
 Q2.1：校外是否可以访问计算集群？
 
 A2.1：计算集群仅对校园网开放。教师用户可以使用[中国科学技术大学网络 OpenVPN 系统](https://openvpn.ustc.edu.cn/) 在校外访问计算集群。
+无法使用学校 OpenVPN 系统的用户可以使用 [中国科学技术大学 WebVPN 系统](https://wvpn.ustc.edu.cn/) 访问 SCOW 算力平台（填写网址为 `http://scow.saids.hpc.gleamoe.com/`），
+通过网页 Shell 功能实现集群的访问。
 
 ## 网络 {#networking}
 
