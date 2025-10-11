@@ -59,12 +59,12 @@ icon: material/server
 
 | QOS 名称 | MaxJobsPU | MaxSubmitPU |
 |--------|-----------|-------------|
-| normal | 1         | 2           |
+| normal | 2         | 4           |
 
 PU = per user（每用户）
 
-- MaxJobsPU：每用户在此 QoS 下可同时运行的作业数上限：1。
-- MaxSubmitPU：每用户在此 QoS 下运行 + 排队的作业数上限：2。例如 1 个运行 + 1 个排队。
+- MaxJobsPU：每用户在此 QoS 下可同时运行的作业数上限：2。
+- MaxSubmitPU：每用户在此 QoS 下运行 + 排队的作业数上限：4。例如 2 个运行 + 2 个排队。
 
 ## 计费标准 {#billing-standards}
 
