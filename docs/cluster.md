@@ -15,7 +15,7 @@ icon: material/server
 | 节点类别            | 节点名          | 主要规格                                                                     | 节点数 |
 |-----------------|--------------|--------------------------------------------------------------------------|-----|
 | GPU 节点（A800）    | gpu[1-5]     | 2 * Intel Xeon Platinum 8358P CPU @ 2.60GHz, 1TB, NVIDIA A800 8-GPU 80GB | 5   |
-| GPU 节点（RTX4090） | gpu[6-8]     | 2 * Intel Xeon Gold 6426Y CPU @ 2.5GHz, 540GB, NVIDIA RTX4090 8-GPU 24GB | 3   |
+| GPU 节点（RTX4090） | gpu[6-8]     | 2 * Intel Xeon Gold 6426Y CPU @ 2.5GHz, 512GB, NVIDIA RTX4090 8-GPU 24GB | 3   |
 | GPU 节点（L40）     | gpu[9-10]    | 2 * Intel Xeon Platinum 8360Y CPU @ 2.40GHz, 1TB, L40 8-GPU 45GB         | 2   |
 | 登录节点 / 管理节点     | login/master | 2 * Intel Xeon Gold 6226R CPU @ 2.90GHz, 384GB                           | 1   |
 | 存储节点 1          | data1        | 2 \* Intel Xeon Silver 4310，128G, 36 \* 3.84TB SSD                       | 1   |
@@ -49,8 +49,7 @@ icon: material/server
 | 分区        | 节点列表      | 单节点规格                   | 数量 |
 |-----------|-----------|-------------------------|----|
 | A800      | gpu[1-5]  | 128 核，1TB 内存，8 张 GPU 卡  | 5  |
-| RTX4090-7 | gpu6      | 64 核，540GB 内存，8 张 GPU 卡 | 1  |
-| RTX4090   | gpu[7-8]  | 64 核，540GB 内存，8 张 GPU 卡 | 2  |
+| RTX4090   | gpu[6-8]  | 64 核，512GB 内存，8 张 GPU 卡 | 2  |
 | L40       | gpu[9-10] | 144 核，1TB 内存，8 张 GPU 卡  | 2  |
 
 鉴于当前资源配置策略，每个计算任务仅支持在单一计算节点上运行。
@@ -59,11 +58,11 @@ icon: material/server
 
 | QOS 名称 | MaxJobsPU | MaxSubmitPU |
 |--------|-----------|-------------|
-| normal | 2         | 4           |
+| normal | 3         | 4           |
 
 PU = per user（每用户）
 
-- MaxJobsPU：每用户在此 QoS 下可同时运行的作业数上限：2。
+- MaxJobsPU：每用户在此 QoS 下可同时运行的作业数上限：3。
 - MaxSubmitPU：每用户在此 QoS 下运行 + 排队的作业数上限：4。例如 2 个运行 + 2 个排队。
 
 ## 计费标准 {#billing-standards}
@@ -71,6 +70,5 @@ PU = per user（每用户）
 | 分区        | 单价（元） | 状态  |
 |-----------|-------|-----|
 | A800      | 2.00  | 执行中 |
-| RTX4090-7 | 0.50  | 执行中 |
 | RTX4090   | 0.50  | 执行中 |
 | L40       | 1.00  | 执行中 |
