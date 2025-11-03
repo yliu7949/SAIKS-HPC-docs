@@ -77,12 +77,12 @@ extra:
 
 extra_javascript:
   - javascripts/katex.js
-  - https://unpkg.com/katex@0/dist/katex.min.js
-  - https://unpkg.com/katex@0/dist/contrib/auto-render.min.js
+  - https://cdn.gleamoe.com/saids/extra/katex.min.js
+  - https://cdn.gleamoe.com/saids/extra/auto-render.min.js
 
 extra_css:
   - css/extra.css
-  - https://unpkg.com/katex@0/dist/katex.min.css
+  - https://cdn.gleamoe.com/saids/extra/katex.min.css
 
 plugins:
   - search
