@@ -12,28 +12,26 @@ icon: material/server
 
 ### 节点配置
 
-| 节点类别            | 节点名          | 主要规格                                                                     | 节点数 |
-|-----------------|--------------|--------------------------------------------------------------------------|-----|
-| GPU 节点（A800）    | gpu[1-5]     | 2 * Intel Xeon Platinum 8358P CPU @ 2.60GHz, 1TB, NVIDIA A800 8-GPU 80GB | 5   |
-| GPU 节点（RTX4090） | gpu[6-8]     | 2 * Intel Xeon Gold 6426Y CPU @ 2.5GHz, 512GB, NVIDIA RTX4090 8-GPU 24GB | 3   |
-| GPU 节点（L40）     | gpu[9-10]    | 2 * Intel Xeon Platinum 8360Y CPU @ 2.40GHz, 1TB, L40 8-GPU 45GB         | 2   |
-| 登录节点 / 管理节点     | login/master | 2 * Intel Xeon Gold 6226R CPU @ 2.90GHz, 384GB                           | 1   |
-| 存储节点 1          | data1        | 2 \* Intel Xeon Silver 4310, 128G, 36 \* 3.84TB SSD                      | 1   |
-| 存储节点 2          | data2        | 2 \* Intel Xeon Silver 4310, 128G, 34 \* 16TB HDD                        | 1   |
+| 节点类别            | 节点名          | 主要规格                                                                              | 节点数 |
+|-----------------|--------------|-----------------------------------------------------------------------------------|-----|
+| GPU 节点（A800）    | gpu[1-5]     | 2 * Intel Xeon Platinum 8358P CPU @ 2.60GHz, 1TB, NVIDIA A800 SXM4 8-GPU 80GB     | 5   |
+| GPU 节点（RTX4090） | gpu[6-8]     | 2 * Intel Xeon Gold 6426Y CPU @ 2.5GHz, 512GB, NVIDIA GeForce RTX 4090 8-GPU 24GB | 3   |
+| GPU 节点（L40）     | gpu[9-10]    | 2 * Intel Xeon Platinum 8360Y CPU @ 2.40GHz, 1TB, NVIDIA L40 8-GPU 45GB           | 2   |
+| GPU 节点（A100）    | gpu[11-21]   | 2 * Intel Xeon Platinum 8358P CPU @ 2.60GHz, 1TB, NVIDIA A100 SXM4 8-GPU 80GB     | 11  |
+| 登录节点 / 管理节点     | login/master | 2 * Intel Xeon Gold 6226R CPU @ 2.90GHz, 384GB                                    | 1   |
+| 存储节点 1          | data1        | 2 \* Intel Xeon Silver 4310 @ 2.10GHz, 128GB, 36 \* 3.84TB SSD                    | 1   |
+| 存储节点 2          | data2        | 2 \* Intel Xeon Silver 4310 @ 2.10GHz, 128GB, 34 \* 16TB HDD                      | 1   |
 
-### 节点性能
+### 计算节点性能
 
-| 节点类别            | 单核主频    | 单节点核心数                                  | 单周期指令执行数 | 节点数    | 理论峰值/GFlops     |
-|-----------------|---------|-----------------------------------------|----------|--------|-----------------|
-| GPU 节点（A800）    | 2.60GHz | 3,456 Tensor cores + 55,296 CUDA cores  | NA       | 5      | 780,000         |
-| GPU 节点（RTX4090） | 2.50GHz | 4,096 Tensor cores + 131,072 CUDA cores | NA       | 3      | 1,982,400       |
-| GPU 节点（L40）     | 2.40GHz | 4,544 Tensor cores + 145,408 CUDA cores | NA       | 2      | 1,448,000       |
-| 登录节点 / 管理节点     | 2.90GHz | 32                                      | 32       | 1      | 2,969.6         |
-| 存储节点 1          | 2.10GHz | 48                                      | 32       | 1      | 3,225.6         |
-| 存储节点 2          | 2.10GHz | 48                                      | 32       | 1      | 3,225.6         |
-| **合计**          |         |                                         |          | **13** | **4,219,820.8** |
+| GPU 型号  | GPU 数 / 节点 | CUDA Cores / 节点 | Tensor Cores / 节点 | FP64 (TFLOPS / 节点) | FP64 Tensor Core (TFLOPS / 节点) | 节点数 |
+|---------|------------|-----------------|-------------------|--------------------|--------------------------------|-----|
+| A800    | 8          | 55,296          | 3,456             | 77.6               | 156                            | 5   |
+| RTX4090 | 8          | 131,072         | 4,096             | 10.3               | -                              | 3   |
+| L40     | 8          | 145,408         | 4,544             | 11.3               | -                              | 2   |
+| A100    | 8          | 55,296          | 3,456             | 77.6               | 156                            | 11  |
 
-计算节点：10 个、登录/管理/存储节点：3 个、GPU 卡：80 张。理论计算峰值约 4.22PFLOPS。
+集群共包含 21 个 GPU 计算节点、168 张 GPU 加速卡，在不考虑通信与并行效率损失的理想条件下，其 GPU 侧理论 FP64 峰值计算能力约为 1.30 PFLOPS。
 
 ### 存储配置
 
@@ -46,16 +44,17 @@ icon: material/server
 
 ## 分区设置 {#slurm-partition}
 
-| 分区      | 节点列表      | 单节点规格                   | 数量 |                    备注                    |
-|---------|-----------|-------------------------|----|:----------------------------------------:|
-| A800    | gpu[1-5]  | 128 核，1TB 内存，8 张 GPU 卡  | 5  | 推荐每申请 1 张 GPU 卡搭配申请 16 核 CPU 和 128 GB 内存 |
-| RTX4090 | gpu[6-8]  | 64 核，512GB 内存，8 张 GPU 卡 | 2  |  推荐每申请 1 张 GPU 卡搭配申请 8 核 CPU 和 64 GB 内存  |
-| L40     | gpu[9-10] | 144 核，1TB 内存，8 张 GPU 卡  | 2  | 推荐每申请 1 张 GPU 卡搭配申请 18 核 CPU 和 128 GB 内存 |
+| 分区      | 节点列表       | 单节点规格                   | 数量 |                    备注                    |
+|---------|------------|-------------------------|----|:----------------------------------------:|
+| A800    | gpu[1-5]   | 128 核，1TB 内存，8 张 GPU 卡  | 5  | 推荐每申请 1 张 GPU 卡搭配申请 16 核 CPU 和 128 GB 内存 |
+| RTX4090 | gpu[6-8]   | 64 核，512GB 内存，8 张 GPU 卡 | 2  |  推荐每申请 1 张 GPU 卡搭配申请 8 核 CPU 和 64 GB 内存  |
+| L40     | gpu[9-10]  | 144 核，1TB 内存，8 张 GPU 卡  | 2  | 推荐每申请 1 张 GPU 卡搭配申请 18 核 CPU 和 128 GB 内存 |
+| A100    | gpu[11-21] | 128 核，1TB 内存，8 张 GPU 卡  | 5  | 推荐每申请 1 张 GPU 卡搭配申请 16 核 CPU 和 128 GB 内存 |
 
 当前资源配置策略：
 
 - 每个计算任务仅支持在单一计算节点上运行；
-- 在 A800 分区中运行的作业，必须至少申请 1 张 GPU 卡。
+- 在 A800 和 A100 分区中运行的作业，必须至少申请 1 张 GPU 卡。
 
 ## QOS 设置 {#QOS}
 
@@ -86,6 +85,7 @@ $$
 | A800    | 2.00  | $\text{usageHours} \times \max \left\{\text{gpusUsed},\;\lceil \text{cpusAlloc} \times \frac{8}{128} \rceil\right\} \times 2.00$ |
 | RTX4090 | 0.50  | $\text{usageHours} \times \max \left\{\text{gpusUsed},\;\lceil \text{cpusAlloc} \times \frac{8}{64} \rceil\right\} \times 0.50$  |
 | L40     | 1.00  | $\text{usageHours} \times \max \left\{\text{gpusUsed},\;\lceil \text{cpusAlloc} \times \frac{8}{144} \rceil\right\} \times 1.00$ |
+| A100    | 2.00  | $\text{usageHours} \times \max \left\{\text{gpusUsed},\;\lceil \text{cpusAlloc} \times \frac{8}{128} \rceil\right\} \times 2.00$ |
 
 !!! comment "作业费用计算示例"
 
@@ -99,4 +99,4 @@ $$
 
 ## 费用充值 {#recharge-method}
 
-充值功能目前正在内部测试与流程拟定中，预计将于今年 11 月正式开放。
+充值功能目前正在内部测试与流程拟定中。
