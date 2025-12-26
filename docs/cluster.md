@@ -16,7 +16,7 @@ icon: material/server
 |-----------------|--------------|-----------------------------------------------------------------------------------|-----|
 | GPU 节点（A800）    | gpu[1-5]     | 2 * Intel Xeon Platinum 8358P CPU @ 2.60GHz, 1TB, NVIDIA A800 SXM4 8-GPU 80GB     | 5   |
 | GPU 节点（RTX4090） | gpu[6-8]     | 2 * Intel Xeon Gold 6426Y CPU @ 2.5GHz, 512GB, NVIDIA GeForce RTX 4090 8-GPU 24GB | 3   |
-| GPU 节点（L40）     | gpu[9-10]    | 2 * Intel Xeon Platinum 8360Y CPU @ 2.40GHz, 1TB, NVIDIA L40 8-GPU 45GB           | 2   |
+| GPU 节点（L40）     | gpu[9-10]    | 2 * Intel Xeon Platinum 8360Y CPU @ 2.40GHz, 1TB, NVIDIA L40 8-GPU 48GB           | 2   |
 | GPU 节点（A100）    | gpu[11-21]   | 2 * Intel Xeon Platinum 8358P CPU @ 2.60GHz, 1TB, NVIDIA A100 SXM4 8-GPU 80GB     | 11  |
 | 登录节点 / 管理节点     | login/master | 2 * Intel Xeon Gold 6226R CPU @ 2.90GHz, 384GB                                    | 1   |
 | 存储节点 1          | data1        | 2 \* Intel Xeon Silver 4310 @ 2.10GHz, 128GB, 36 \* 3.84TB SSD                    | 1   |
@@ -24,14 +24,14 @@ icon: material/server
 
 ### 计算节点性能
 
-| GPU 型号  | GPU 数 / 节点 | CUDA Cores / 节点 | Tensor Cores / 节点 | FP64 (TFLOPS / 节点) | FP64 Tensor Core (TFLOPS / 节点) | 节点数 |
+| GPU 型号  | GPU 数 / 节点 | CUDA Cores / 节点 | Tensor Cores / 节点 | FP64 (TFLOPS / 节点) | FP16 Tensor Core (PFLOPS / 节点) | 节点数 |
 |---------|------------|-----------------|-------------------|--------------------|--------------------------------|-----|
-| A800    | 8          | 55,296          | 3,456             | 77.6               | 156                            | 5   |
-| RTX4090 | 8          | 131,072         | 4,096             | 10.3               | -                              | 3   |
-| L40     | 8          | 145,408         | 4,544             | 11.3               | -                              | 2   |
-| A100    | 8          | 55,296          | 3,456             | 77.6               | 156                            | 11  |
+| A800    | 8          | 55,296          | 3,456             | 77.6               | 2.496                          | 5   |
+| RTX4090 | 8          | 131,072         | 4,096             | 10.3               | 2.642                          | 3   |
+| L40     | 8          | 145,408         | 4,544             | 11.3               | 1.448                          | 2   |
+| A100    | 8          | 55,296          | 3,456             | 77.6               | 2.496                          | 11  |
 
-集群共包含 21 个 GPU 计算节点、168 张 GPU 加速卡，在不考虑通信与并行效率损失的理想条件下，其 GPU 侧理论 FP64 峰值计算能力约为 1.30 PFLOPS。
+集群共包含 21 个 GPU 计算节点、168 张 GPU 加速卡，在忽略通信与并行效率损失的理想条件下，其 GPU 侧理论 FP64 峰值性能约为 1.30 PFLOPS，FP16 Tensor Core 理论峰值性能可达 50.758 PFLOPS。
 
 ### 存储配置
 
