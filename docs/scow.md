@@ -10,7 +10,7 @@ icon: material/television-guide
 
 ## 登录门户
 
-!!! info "访问 SCOW 门户：<a href="http://scow.saids.hpc.gleamoe.com/" target="_blank" rel="noopener noreferrer">http://scow.saids.hpc.gleamoe.com/</a>"
+!!! error "SCOW 门户因许可证过期已停止使用。"
 
 ![login](https://cdn.gleamoe.com/saids/scow/login.png)
 
