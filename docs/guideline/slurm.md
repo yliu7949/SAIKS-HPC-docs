@@ -13,20 +13,21 @@ icon: material/one-up
 
 ### 使用示例
 
-1. **单节点单核心作业**
+1. **单节点 CPU 作业**
 
-    申请一个 CPU 核心来执行任务。
+    申请一个计算节点中的多个 CPU 核心来加速执行任务。
 
     !!! note "示例提交作业脚本：job.sh"
 
         ```bash
         #!/bin/bash
-        #SBATCH -J myFirstJob         # 作业名称
-        #SBATCH -o job.%j.out         # 作业的标准输出文件
-        #SBATCH -p compute            # 提交到名为 compute 的分区
-        #SBATCH --qos=normal          # 指定服务质量 (QOS)
-        #SBATCH -N 1                  # 申请 1 个节点
-        #SBATCH -n 1                  # 申请 1 个核心
+        #SBATCH -J myMultiCoreJob      # 作业名称
+        #SBATCH -o job.%j.out          # 标准输出文件 (%j 会替换为作业号)
+        #SBATCH -p L40                 # 提交到 L40 分区
+        #SBATCH -N 1                   # 申请 1 个节点
+        #SBATCH -n 1                   # 启动 1 个任务 (Task)
+        #SBATCH -c 4                   # 每个任务分配 4 个 CPU 核心
+        #SBATCH -t 1-00:00:00          # 最长运行 1 天
         
         # 打印当前节点的主机名
         hostname
@@ -37,10 +38,11 @@ icon: material/one-up
 
     * `-J myFirstJob`: 定义作业在调度系统中的名称为 `myFirstJob`。
     * `-o job.%j.out`: 脚本的标准输出将被重定向到 `job.%j.out` 文件中，`%j` 会被系统自动替换为作业 ID。
-    * `-p compute`: 指定作业提交到名为 `compute` 的分区。您需要根据集群的实际情况选择分区。
-    * `--qos=normal`: 指定作业的服务质量（QOS）。不同的 QOS 对应不同的优先级、资源限制和计费策略。
+    * `-p L40`: 指定作业提交到名为 `L40` 的分区。
     * `-N 1` 或 `--nodes=1`: 申请 1 个计算节点。对于非并行（如 MPI）作业，此值通常为 1。
-    * `-n 1` 或 `--ntasks=1`: 申请 1 个任务（通常等同于 1 个 CPU 核心）。
+    * `-n 1` 或 `--ntasks=1`: 启动 1 个任务（通常对应 1 个主程序进程）。
+    * `-c 4` 或 `--cpus-per-task=4`: 为每一个任务分配 4 个 CPU 核心。
+    * `-t 1-00:00:00`：设置作业最长运行时间为 1 天。
 
     通过以下命令提交作业：
 
@@ -54,14 +56,6 @@ icon: material/one-up
 
         ```shell
         sinfo -o "%P %G %m %c"
-        # 或者使用以下命令查看您有权限使用的分区
-        sacctmgr show ass user=`whoami` format=part | uniq
-        ```
-
-    * 查看可用服务质量 (QOS):
-
-        ```shell
-        sacctmgr show ass user=`whoami` format=user,part,qos
         ```
 
 3. **单节点 GPU 作业**
@@ -74,55 +68,21 @@ icon: material/one-up
         #!/bin/bash
         #SBATCH -J myGPUJob
         #SBATCH -o gpu_job.%j.out
-        #SBATCH -p gpu              # 提交到 GPU 分区
-        #SBATCH --qos=gpu_normal
-        #SBATCH -N 1
-        #SBATCH -n 4                # 申请 4 个 CPU 核心
-        #SBATCH --gres=gpu:1        # 申请 1 块 GPU 卡
+        #SBATCH -p L40               # 选择分区：A100 / L40 / RTX4090 / A800
+        #SBATCH -N 1                 # 当前系统仅支持单节点作业
+        #SBATCH -n 1                 # 1 个任务
+        #SBATCH -c 4                 # 为该任务分配 4 个 CPU 核心
+        #SBATCH --gres=gpu:1         # 申请 1 张 GPU
+        #SBATCH -t 00:05:00          # 最长运行 5 分钟
 
-        # 打印分配到的 GPU 信息
+        hostname
         nvidia-smi
         echo "GPU Job finished!"
         ```
 
     **关键参数说明：**
 
-    * `-p gpu`: 指定提交到拥有 GPU 资源的特定分区。
     * `--gres=gpu:1`: `gres` (Generic RESource) 用于申请通用资源。`gpu:1` 表示申请 1 块 GPU 卡。如果需要 2 块，则使用 `--gres=gpu:2`。
-
-    **注意事项**
-
-    * 并非所有节点都配备 GPU。请使用 `sinfo -o "%P %G"` 命令查看哪些分区包含 GPU 资源 (`%G` 列会显示 gpu 类型及数量)。
-    * 在某些集群中，GPU 和 CPU 核心是按比例绑定的。例如，一个节点有 4 块 GPU 和 64 个 CPU 核心，那么申请 1 块 GPU 时，您最多可能只能使用 16 个 CPU 核心。超额申请 CPU 核心可能会导致作业排队时间变长或计费增加。
-
-4. **多节点并行 (MPI) 作业**
-
-    对于需要跨节点通信的 MPI (Message Passing Interface) 程序，您需要申请多个节点。
-
-    !!! note "示例提交作业脚本：mpi_job.sh"
-
-        ```bash
-        #!/bin/bash
-        #SBATCH -J myMPIJob
-        #SBATCH -o mpi_job.%j.out
-        #SBATCH -p compute
-        #SBATCH --qos=normal
-        #SBATCH -N 2                  # 申请 2 个节点
-        #SBATCH --ntasks-per-node=32  # 每个节点运行 32 个任务/核心
-
-        # 模块加载 (根据集群环境配置)
-        module load intel-mpi
-        module load vasp
-
-        # 运行 MPI 程序 (共 2*32=64 个核心)
-        mpirun -n 64 vasp_std > result.log
-        ```
-
-    **关键参数说明：**
-
-    * `-N 2`: 申请 2 个独立的计算节点。
-    * `--ntasks-per-node=32`: 指定在每个节点上运行 32 个任务。
-    * `mpirun -n 64`: 启动 MPI 程序，总共使用 64 个进程。这个数字通常应等于 `节点数 × 每节点任务数`。
 
 ### 常用参数
 
@@ -145,34 +105,8 @@ icon: material/one-up
 | `--account=<account>`       | `-A` | 指定计费账户（通常无需设置）。                         |
 | `--nodelist=<nodes>`        | `-w` | 指定在哪些节点上运行。                             |
 | `--exclude=<nodes>`         | `-x` | 指定排除哪些节点。                               |
-
-### 资源申请技巧
-
-1. **资源参数的优先级**
-
-    `--nodes` (`-N`) 和 `--ntasks-per-node` 的组合通常**优先级高于** `--ntasks` (`-n`)。
-
-    例如，以下配置：
-
-    ```bash
-    #SBATCH -N 2
-    #SBATCH --ntasks-per-node=32
-    #SBATCH -n 60  # 此行通常会被忽略
-    ```
-
-    系统会为您分配 `2 * 32 = 64` 个核心，而不是 60 个。因此，推荐使用 `-N` 和 `--ntasks-per-node` 的组合来精确控制资源。
-
-2. **核心与内存的关系**
-
-    集群的计算节点有固定的 CPU 核心数和内存总量。您申请的核心数决定了您可以使用的内存量。
-
-    * 使用 `sinfo -o "%P %c %m"` 可以查看各分区每个节点的 CPU 总数和内存总量。
-    * **估算可用内存**：`单个核心可用内存 ≈ 节点总内存 / 节点总核心数`。
-    * 如果您的程序因内存不足（如 `OOM killed`）而失败，您可以：
-        1. 在同一个节点上申请更多的核心 (`-n` 或 `--ntasks-per-node`)。
-        2. 切换到一个内存更大的分区（如果可用）。
   
-## salloc (创建交互式作业) {#salloc}
+## salloc 和 srun (创建交互式作业) {#salloc-and-srun}
 
 `salloc` 命令用于实时申请计算资源，并为您创建一个交互式的会话。这允许您直接登录到计算节点上进行调试、软件测试或执行需要实时交互的命令。
 
@@ -184,16 +118,19 @@ icon: material/one-up
 
 ### 使用示例
 
+在大多数 Slurm 配置中，交互式作业建议遵循“先申请，再进入”的标准流程：
+
 1. **申请单节点多核心**
 
-    假设您需要 6 个 CPU 核心来进行程序调试，最长需要 2 小时。
+    假设您需要 6 个 CPU 核心，最长需要 2 小时。
 
     ```shell
-    # 申请资源，--pty bash 会在分配成功后直接为您启动一个 bash shell
-    salloc -p compute -N 1 -n 6 --qos=normal -t 2:00:00 --pty bash
+    # 申请资源
+    salloc -p L40 -N 1 -n 6 -t 02:00:00 bash
 
-    # 命令执行后，若资源可用，您的命令提示符会发生变化，表明已在计算节点上
-    # 例如：[user@compute-node-01 ~]$
+    # 第二步：进入计算节点
+    # 此时无需重复参数，srun 会自动继承 salloc 申请到的资源
+    srun --pty bash
 
     # 现在您可以执行您的调试任务了
     ./my_program
@@ -207,45 +144,38 @@ icon: material/one-up
     如果您需要调试一个 GPU 程序，可以申请一块 GPU 卡和相应的 CPU 核心。
 
     ```shell
-    # 申请 1 个节点、4 个核心和 1 块 GPU，最长 24 小时
-    salloc -p gpu -N 1 -n 4 --gres=gpu:1 --qos=gpu_normal -t 24:00:00 --pty bash
+    # 申请 1 个节点、4 个核心和 1 块 L40 显卡
+    salloc -p L40 -N 1 -n 4 --gres=gpu:1 -t 2:00:00
 
-    # 进入交互式会话后，可以先确认 GPU 是否分配成功
+    # 进入节点并检查显卡状态
+    srun --pty bash
     nvidia-smi
 
-    # 然后运行您的 GPU 程序
-    ./my_gpu_app
+    # 运行任务
+    python train.py
 
-    # 任务完成，退出会话
-    exit
-    ```
-
-3. **申请多节点资源 (用于 MPI)**
-
-    对于需要跨节点调试的 MPI 程序，您可以申请多个节点。
-
-    ```shell
-    # 申请 2 个节点，每个节点 12 个核心，共 24 个核心
-    salloc -p compute -N 2 --ntasks-per-node=12 --qos=normal -t 2:00:00
-
-    # salloc 成功后会返回一个作业 ID，并在当前终端创建一个资源分配环境
-    # Your job 123456 has been submitted
-    # salloc: Granted job allocation 123456
-
-    # 现在，您可以在这个终端内使用 srun 来启动您的 MPI 程序
-    # srun 会自动利用您刚刚申请到的所有资源
-    module load intel-mpi
-    srun -n 24 hostname    # -n 24 表示使用全部 24 个核心
-
-    # 调试完成后，释放资源
+    # 退出并释放资源
     exit
     ```
 
 ### 重要注意事项
 
-* **适用场景**：交互式任务主要用于**程序调试、编译和短时间测试**。对于长时间、稳定的计算任务，请务必使用 `sbatch` 提交作业。
-* **释放资源**：交互式会话结束后，**请务必确认资源已被释放**！最简单的方式是输入 `exit` 或关闭终端。您也可以在另一个终端窗口使用 `squeue -u $USER` 检查您的名下是否还有正在运行的作业。如果会话意外中断，可以使用 `scancel <JOB_ID>` 手动终止作业，避免不必要的资源占用和计费。
-* **参数通用性**：`salloc` 的资源申请参数（如 `-p`, `-N`, `-n`, `--gres` 等）与 `sbatch` **几乎完全相同**，您可以参考 `sbatch` 的说明来申请您需要的各种资源。
+* **“两步走”逻辑**：执行 `salloc` 成功后，其实还停留在登录节点，只是获得了一个“特权 Shell”。**必须配合 `srun --pty bash`** 才能真正跳转到计算节点的物理机器上。
+* **环境变量残留**：如果 `salloc` 任务意外中断或超时，环境变量 `$SLURM_JOB_ID` 可能会残留在当前窗口，导致下次申请报错。若遇到 `Job has expired` 错误，请运行 `unset SLURM_JOB_ID` 或开启新终端。
+* **限时自动释放**：交互式作业受 `-t` (Time Limit) 严格限制。一旦到达预设时间，系统会**强制终止**节点内所有进程并把用户踢回登录节点。请确保在时间耗尽前保存调试进度。
+* **资源占用风险**：只要还在交互式 Shell 中，申请的资源就会被一直占用并计费。**任务执行完毕请务必两次 `exit` 或执行 `scancel`**。
+
+---
+
+### 💡 进阶技巧：更快捷的“一键进入”法
+
+可以直接使用 `srun` 代替 `salloc`：
+
+```shell
+srun -p L40 -N 1 -n 6 --gres=gpu:1 -t 01:00:00 --pty bash
+```
+
+该命令会直接排队并在资源就绪时将您“弹”入计算节点，退出时自动释放所有资源，是目前最推荐的交互式调试方案。
 
 ## sinfo (查看集群状态) {#sinfo}
 
@@ -279,10 +209,10 @@ icon: material/one-up
 
     ```shell
     # 查看单个分区
-    sinfo -p gpu
+    sinfo -p L40
 
     # 查看多个分区，用逗号隔开
-    sinfo -p compute_a,compute_b
+    sinfo -p L40,A100
     ```
 
 3. **查看分区详细资源配置**
@@ -347,13 +277,13 @@ sinfo -o "%.15P %.5a %.10l %.6D %.6t %N"
 
 ## squeue (查看作业状态)
 
-`squeue` 命令用于查看作业队列中的作业状态，是监控自己提交任务进展的核心工具。
+`squeue` 命令用于监控作业队列。在本集群中，用户默认只能查看到自己提交的作业。
 
 ### 使用示例
 
-1. **查看队列中的所有作业**
+1. **查看自己的作业列表**
 
-    直接运行 `squeue` 会列出当前调度系统中的所有作业，包括正在运行的（Running）和正在排队的（Pending）。
+    直接运行 `squeue`。由于限制，其输出通常等同于 `squeue -u $USER`。
 
     ```shell
     squeue
@@ -374,31 +304,11 @@ sinfo -o "%.15P %.5a %.10l %.6D %.6t %N"
 
 2. **只查看自己的作业**
 
-    使用 `-u` 参数可以筛选特定用户的作业。
+    虽然默认已过滤，但使用 `-u` 参数是标准的筛选方式。
 
     ```shell
-    # 使用环境变量 $USER 自动填充当前用户名
+    # 使用环境变量 $USER 自动填充
     squeue -u $USER
-
-    # 或者直接指定用户名
-    squeue -u your_username
-    ```
-
-3. **使用别名简化命令**
-
-    `squeue` 的默认输出信息有限。为了更方便地查看详细信息，您可以创建一个 shell 别名（alias）。
-
-    首先，将以下行添加到您主目录下的 `.bashrc` 文件中：
-
-    ```bash
-    # ~/.bashrc
-    alias sq='squeue -o "%.18i %.9P %.12j %.12u %.8T %.10M %.16l %.6D %R" -u $USER'
-    ```
-
-    然后，执行 `source ~/.bashrc` 或重新登录终端使别名生效。之后，您只需输入 `sq` 命令，就能看到格式化后的作业信息。
-
-    ```shell
-    sq
     ```
 
 ### 常用参数
@@ -443,12 +353,11 @@ sinfo -o "%.15P %.5a %.10l %.6D %.6t %N"
 squeue -o "%.18i %.9P %.12j %.12u %.8T %.10M %.16l %.6D %R"
 ```
 
-## sacct & scontrol (查看作业历史) {#sacct-and-scontrol}
+## scontrol (查看作业详情与排错) {#scontrol}
 
-需要查询作业的详细信息时，可以使用`sacct` 和 `scontrol show job` 两个工具。它们各有侧重：
+提交作业后，如果作业处于排队状态（Pending）或正在运行（Running），可以使用 `scontrol` 工具获取该作业极其详尽的实时快照。这是调试提交脚本、确认资源分配是否符合预期的首选工具。
 
-* `scontrol show job`: 提供**正在运行**或**刚结束**作业的**实时、详尽**快照。是调试问题的首选。
-* `sacct`: 用于查询**已完成**作业的**历史会计记录**，如资源使用情况、状态码等。是进行回顾性分析的工具。
+* `scontrol show job`提供**正在运行**或**刚结束**作业的**实时、详尽**快照。是调试问题的首选。
 
 ### 实时查看作业详情
 
@@ -468,66 +377,10 @@ scontrol show job 7454119
 * `SubmitTime`, `StartTime`, `RunTime`: 提交、开始及已运行时间。
 * `NodeList`: 正在使用的节点。
 * `NumCPUs`, `NumNodes`: 申请的 CPU 核心数和节点数。
-* `StdOut`, `StdErr`: 标准输出和标准错误文件的路径。
-* `Command`: 提交的命令或脚本路径。
+* `Command`: 提交的命令。
 
 **注意**
-此命令直接从 Slurm 控制器的内存中读取数据，因此无法查询很久以前的历史作业。如果查询失败，请使用 `sacct` 命令。
-
-### 查询历史作业记录
-
-`sacct` 命令通过查询 Slurm 的会计数据库来获取作业信息，因此它可以检索到所有**已完成**的历史作业记录。
-
-**使用示例：**
-
-```shell
-# 查询作业 ID 为 7454119 的历史记录
-sacct -j 7454119
-```
-
-默认输出会展示作业的主要步骤和信息，包括：
-
-* `JobID`: 作业 ID。
-* `JobName`: 作业名。
-* `Partition`: 分区。
-* `Account`: 计费账户。
-* `AllocCPUS`: 分配的 CPU 核心数。
-* `State`: 最终状态 (如 `COMPLETED`, `FAILED`, `CANCELLED`)。
-* `ExitCode`: 退出码 ( `0:0` 表示成功，非零表示有错误)。
-
-**自定义输出格式：**
-
-与 `sinfo` 和 `squeue` 类似，`sacct` 也支持强大的格式化输出，这对于提取特定信息非常有用。
-
-**使用示例：**
-
-```shell
-# 定义一个格式化字符串
-FORMAT="jobid,jobname,partition,nodelist,alloccpus,state,end"
-
-# 使用该格式查询作业
-sacct --format=$FORMAT -j 7454119
-```
-
-**常用格式化字段：**
-
-| 字段 (Field)  | 说明          |
-|:------------|:------------|
-| `JobID`     | 作业 ID       |
-| `JobName`   | 作业名称        |
-| `Partition` | 分区          |
-| `User`      | 用户名         |
-| `Account`   | 计费账户        |
-| `AllocCPUs` | 分配的 CPU 核心数 |
-| `ReqMem`    | 请求的内存量      |
-| `MaxRSS`    | 作业使用的峰值内存   |
-| `State`     | 最终状态        |
-| `ExitCode`  | 退出码         |
-| `Submit`    | 提交时间        |
-| `Start`     | 开始时间        |
-| `End`       | 结束时间        |
-| `Elapsed`   | 总运行时长       |
-| `NodeList`  | 运行节点列表      |
+此命令直接从 Slurm 控制器的内存中读取数据，因此无法查询很久以前的历史作业。
 
 ## scancel (取消作业) {#scancel}
 
