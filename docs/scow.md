@@ -6,7 +6,7 @@ icon: material/television-guide
 
 ![SCOW Logo](https://cdn.gleamoe.com/saids/scow.svg)
 
-[SCOW（Super Computing On Web）](https://www.pkuscow.com/) 是国内首个开源的高性能计算门户和管理平台。用户可以通过网页执行作业提交、文件管理、终端调用、账户管理等多项操作，极大降低了超算集群的使用门槛。
+[SCOW（Super Computing On Web）](https://www.pkuscow.com/) 是北京大学长沙计算与数字经济研究院联合北京大学计算中心共同推出的高性能计算门户和管理平台。用户可以通过网页执行作业提交、文件管理、终端调用、账户管理等多项操作，极大降低了超算集群的使用门槛。
 
 ## 登录门户
 
